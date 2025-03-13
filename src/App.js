@@ -1,9 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home'; 
+import Home from './components/Home';  
 import Sidebar from './components/Sidebar';  
 import PlantasDashboard from './components/PlantasDashboard';
-import PlantaDetail from './components/PlantaDetail'; // Asegúrate de importar el nuevo componente
+import PlantaDetail from './components/PlantaDetail';
+import DispositivosDashboard from './components/DispositivosDashboard';
+import DispositivoDetail from './components/DispositivoDetail';
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/plantas" element={<PlantasDashboard />} />
-            <Route path="/plantas/:id" element={<PlantaDetail />} /> {/* Ruta para los detalles */}
+            <Route path="/plantas/:id" element={<PlantaDetail />} />
+            <Route path="/dispositivos" element={<DispositivosDashboard />} /> 
+            <Route path="/dispositivos/:id" element={<DispositivoDetail />} />
           </Routes>
         </div>
       </div>

@@ -1,0 +1,26 @@
+.sensor-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sensor-item h4 {
+    font-size: 1.2rem;
+  }
+  
+  .sensor-item .btn {
+    margin-top: 10px;
+  }
+  
+  .sensor-item .sensor-status {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .sensor-item .sensor-date {
+    font-style: italic;
+    color: #888;
+  }
+  

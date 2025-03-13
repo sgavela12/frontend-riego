@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BsHouse, BsTree, BsGear, BsList } from "react-icons/bs";
+import { BsHouse, BsTree, BsGear, BsList, BsCpu } from "react-icons/bs"; // Usar BsCpu o cualquier otro icono disponible
 import { Link } from "react-router-dom"; // Importamos Link para navegación
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -30,6 +30,12 @@ const Sidebar = () => {
           <li className="p-2 d-flex align-items-center">
             <Link to="/plantas" className="text-white text-decoration-none">
               <BsTree size={24} className="me-2" /> {isOpen && "Plantas"}
+            </Link>
+          </li>
+          {/* Enlace de navegación para "Dispositivos" */}
+          <li className="p-2 d-flex align-items-center">
+            <Link to="/dispositivos" className="text-white text-decoration-none">
+              <BsCpu size={24} className="me-2" /> {isOpen && "Dispositivos"}
             </Link>
           </li>
           {/* Enlace de navegación para "Configuración" */}
