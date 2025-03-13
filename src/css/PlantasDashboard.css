@@ -1,0 +1,6 @@
+.planta-item {
+    margin-bottom: 15px; /* Espacio entre cada planta */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Línea separadora opcional */
+  }
+  

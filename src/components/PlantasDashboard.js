@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../css/PlantasDashboard.css"; // Importar el CSS
 
 const PlantasDashboard = () => {
   const [plantas, setPlantas] = useState([]);
@@ -26,8 +27,10 @@ const PlantasDashboard = () => {
       <h2>Lista de Plantas</h2>
       <ul>
         {plantas.map((planta) => (
-          <li key={planta.id}>
-            🌱 <strong>{planta.nombre}</strong> - {planta.tipo} - {planta.necesitaAgua ? "💧 Necesita agua" : "✅ Ok"}
+          <li key={planta.id} className="planta-item">
+            🌱 <strong>{planta.nombre}</strong> - {planta.tipo} - {planta.necesitaAgua ? "💧 Necesita agua" : "✅ Ok"}  
+            <br />
+            📅 <em>Plantado el: {new Date(planta.fechaPlantacion).toLocaleDateString()}</em>
           </li>
         ))}
       </ul>
