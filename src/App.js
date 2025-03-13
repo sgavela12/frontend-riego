@@ -1,13 +1,14 @@
 import './App.css';
-import Dashboard from './components/Dashboard';
+import PlantasDashboard from './components/PlantasDashboard';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         
-     <Dashboard />
+      <PlantasDashboard />
       </header>
+   
     </div>
   );
 }
