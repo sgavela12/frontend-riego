@@ -1,17 +1,22 @@
-import "bootstrap/dist/css/bootstrap.min.css"; // Importar Bootstrap
-import "./App.css";
-import PlantasDashboard from "./components/PlantasDashboard";
-import Sidebar from "./components/Sidebar";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home'; 
+import Sidebar from './components/Sidebar';  
+import PlantasDashboard from './components/PlantasDashboard';
+import PlantaDetail from './components/PlantaDetail'; // Asegúrate de importar el nuevo componente
 
 function App() {
   return (
-    <div className="d-flex">
-      {/* Sidebar con ancho fijo */}
-      <Sidebar />
-
-      {/* Contenido principal ocupando el resto del espacio */}
-      <div className="content flex-grow-1 p-4">
-        <PlantasDashboard />
+    <div className="App">
+      <div className="d-flex">
+        <Sidebar />
+        <div className="main-content" style={{ marginLeft: '250px', padding: '20px', width: '100%' }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/plantas" element={<PlantasDashboard />} />
+            <Route path="/plantas/:id" element={<PlantaDetail />} /> {/* Ruta para los detalles */}
+          </Routes>
+        </div>
       </div>
     </div>
   );

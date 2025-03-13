@@ -1,0 +1,42 @@
+.planta-detail {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  .planta-detail h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .planta-detail p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+  }
+  
+  .planta-detail .label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .planta-detail .value {
+    font-style: italic;
+  }
+  
+  .planta-detail .btn-back {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .planta-detail .btn-back:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import "../css/PlantasDashboard.css"; // Importar el CSS
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import "../css/PlantasDashboard.css"; 
 
 const PlantasDashboard = () => {
   const [plantas, setPlantas] = useState([]);
@@ -16,10 +17,10 @@ const PlantasDashboard = () => {
       }
     };
 
-    fetchData(); // Llamada inicial
+    fetchData(); 
     const interval = setInterval(fetchData, 5000); // Actualiza cada 5 segundos
 
-    return () => clearInterval(interval); // Limpieza del intervalo cuando el componente se desmonta
+    return () => clearInterval(interval); 
   }, []);
 
   return (
@@ -31,6 +32,8 @@ const PlantasDashboard = () => {
             🌱 <strong>{planta.nombre}</strong> - {planta.tipo} - {planta.necesitaAgua ? "💧 Necesita agua" : "✅ Ok"}  
             <br />
             📅 <em>Plantado el: {new Date(planta.fechaPlantacion).toLocaleDateString()}</em>
+            <br />
+            <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
           </li>
         ))}
       </ul>
