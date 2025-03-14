@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { BsHouse, BsTree, BsGear, BsList, BsCpu } from "react-icons/bs"; // Usar BsCpu o cualquier otro icono disponible
-import { Link } from "react-router-dom"; // Importamos Link para navegación
+import { BsHouse, BsTree, BsGear, BsList, BsCpu, BsCameraVideo } from "react-icons/bs"; 
+import { Link } from "react-router-dom"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Sidebar = () => {
@@ -36,6 +36,12 @@ const Sidebar = () => {
           <li className="p-2 d-flex align-items-center">
             <Link to="/dispositivos" className="text-white text-decoration-none">
               <BsCpu size={24} className="me-2" /> {isOpen && "Dispositivos"}
+            </Link>
+          </li>
+          {/* Enlace de navegación para "Cámara" */}
+          <li className="p-2 d-flex align-items-center">
+            <Link to="/camara" className="text-white text-decoration-none">
+              <BsCameraVideo size={24} className="me-2" /> {isOpen && "Cámara"}
             </Link>
           </li>
           {/* Enlace de navegación para "Configuración" */}

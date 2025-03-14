@@ -1,0 +1,37 @@
+.camara-dashboard {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.camara-dashboard h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.camara-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.horizontal-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin: 10px 0;
+}
+
+.camara-view {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #e9e9e9;
+}
