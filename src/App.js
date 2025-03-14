@@ -6,7 +6,7 @@ import PlantasDashboard from './components/PlantasDashboard';
 import PlantaDetail from './components/PlantaDetail';
 import DispositivosDashboard from './components/DispositivosDashboard';
 import DispositivoDetail from './components/DispositivoDetail';
-import CamaraDashboardDashboard from './components/CamaraDashboard';
+import CameraStream from './components/CameraStream';
 function App() {
   return (
     <div className="App">
@@ -18,7 +18,7 @@ function App() {
             <Route path="/plantas" element={<PlantasDashboard />} />
             <Route path="/plantas/:id" element={<PlantaDetail />} />
             <Route path="/dispositivos" element={<DispositivosDashboard />} /> 
-            <Route path="/camara" element={<CamaraDashboardDashboard />} />
+            <Route path="/camara" element={<CameraStream />} />
             <Route path="/dispositivos/:id" element={<DispositivoDetail />} />
           </Routes>
         </div>

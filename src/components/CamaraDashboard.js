@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import "../css/CamaraDashboard.css";
+import Streaming from './Streaming';
 
 const CamaraDashboard = () => {
   return (
@@ -24,6 +25,7 @@ const CamaraDashboard = () => {
       </div>
       <div className="camara-view">
         {/* Espacio en blanco para la futura imagen */}
+        <Streaming />
       </div>
     </div>
   );

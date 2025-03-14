@@ -1,0 +1,91 @@
+.app-container {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  transition: width 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar h2 {
+  color: white;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .sidebar.w-250 {
+    width: 250px;
+    padding: 20px;
+    visibility: visible;
+  }
+
+  .sidebar.w-0 {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .sidebar.w-250 {
+    width: 250px;
+    padding: 20px;
+    visibility: visible;
+  }
+
+  .sidebar.w-0 {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+}
