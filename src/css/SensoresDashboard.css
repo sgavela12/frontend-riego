@@ -24,3 +24,20 @@
     color: #888;
   }
   
+  /* SensoresDashboard.css */
+.dispositivo-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .dispositivo-item strong {
+    font-size: 1.2em;
+  }
+  
+  .dispositivo-item .btn {
+    margin-top: 10px;
+  }
+  

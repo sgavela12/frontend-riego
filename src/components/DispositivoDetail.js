@@ -1,36 +1,72 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import "../css/SensorDetail.css";  // Crea un archivo de estilos para los detalles
+import "../css/SensorDetail.css";  
 
 const DispositivoDetail = () => {
-  const { id } = useParams(); // Obtenemos el id del sensor
-  const [sensor, setSensor] = useState(null);
+  const { id } = useParams(); // Obtenemos el id del Dispositivo
+  const [dispositivo, setDispositivo] = useState(null);
 
   useEffect(() => {
-    const fetchSensor = async () => {
+    const fetchDispositivo = async () => {
       try {
-        const response = await fetch(`http://192.168.1.150:8087/api/sensores/${id}`);
+        const response = await fetch(`http://192.168.1.150:8087/api/dispositivos/${id}`);
         const data = await response.json();
-        setSensor(data);
+        setDispositivo(data);
       } catch (error) {
-        console.error("Error al obtener los detalles del sensor:", error);
+        console.error("Error al obtener los detalles del dispositivo:", error);
       }
     };
 
-    fetchSensor();
+    fetchDispositivo();
   }, [id]);
 
-  if (!sensor) return <p>Cargando...</p>;
+  if (!dispositivo) return <p>Cargando...</p>;
 
   return (
-    <div className="sensor-detail">
-      <h2>Detalles del Sensor</h2>
-      <p><strong>Nombre:</strong> {sensor.nombre}</p>
-      <p><strong>Tipo:</strong> {sensor.tipo}</p>
-      <p><strong>Estado:</strong> {sensor.estado ? "🟢 Activo" : "🔴 Inactivo"}</p>
-      <p><strong>Fecha de Instalación:</strong> {new Date(sensor.fechaInstalacion).toLocaleDateString()}</p>
-      {/* Agrega más detalles según sea necesario */}
-      <Link to="/sensores" className="btn btn-secondary mt-2">Volver a la lista</Link>
+    <div className="dispositivo-detail">
+      <h2>Detalles del Dispositivo</h2>
+      <p><strong>Nombre:</strong> {dispositivo.nombre}</p>
+      <p><strong>Tipo:</strong> {dispositivo.tipo}</p>
+      <p><strong>Ubicación:</strong> {dispositivo.ubicacion}</p>
+      <p><strong>Estado:</strong> {dispositivo.estado ? "🟢 Activo" : "🔴 Inactivo"}</p>
+
+      {/* Mostrar los usuarios asociados */}
+      {dispositivo.usuarios && dispositivo.usuarios.length > 0 && (
+        <div>
+          <h4>Usuarios Asociados:</h4>
+          <ul>
+            {dispositivo.usuarios.map((usuario, index) => (
+              <li key={index}>{usuario.nombre}</li> // Asumiendo que el objeto usuario tiene un campo "nombre"
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Mostrar los datos de los sensores */}
+      {dispositivo.datos && dispositivo.datos.length > 0 && (
+        <div>
+          <h4>Datos de Sensores:</h4>
+          <ul>
+            {dispositivo.datos.map((dato, index) => (
+              <li key={index}>{dato.valor}</li> // Asumiendo que el objeto dato tiene un campo "valor"
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Mostrar los eventos de riego */}
+      {dispositivo.riegos && dispositivo.riegos.length > 0 && (
+        <div>
+          <h4>Eventos de Riego:</h4>
+          <ul>
+            {dispositivo.riegos.map((riego, index) => (
+              <li key={index}>{riego.fecha}</li> // Asumiendo que el objeto riego tiene un campo "fecha"
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <Link to="/dispositivos" className="btn btn-secondary mt-2">Volver a la lista</Link>
     </div>
   );
 };

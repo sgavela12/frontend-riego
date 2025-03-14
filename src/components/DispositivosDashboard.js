@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import "../css/SensoresDashboard.css";  // Asegúrate de que el archivo CSS existe
+import "../css/SensoresDashboard.css";  
 
 const DispositivosDashboard = () => {
-  const [sensores, setSensores] = useState([]);
-  const API_URL = "http://192.168.1.150:8087/api/sensores";  // Cambia esto con tu URL de API real
+  const [dispositivos, setDispositivos] = useState([]); 
+  const API_URL = "http://192.168.1.150:8087/api/dispositivos";  // URL para la API de dispositivos
 
-  // Llamada a la API para obtener la lista de sensores
+  // Llamada a la API para obtener la lista de dispositivos
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        setSensores(data);
+        setDispositivos(data); // Guardar los dispositivos en el estado
       } catch (error) {
-        console.error("Error al obtener los sensores:", error);
+        console.error("Error al obtener los dispositivos:", error);
       }
     };
 
@@ -26,15 +26,15 @@ const DispositivosDashboard = () => {
 
   return (
     <div>
-      <h2>Lista de Sensores</h2>
+      <h2>Lista de Dispositivos</h2>
       <ul>
-        {sensores.map((sensor) => (
-          <li key={sensor.id} className="sensor-item">
-            🔌 <strong>{sensor.nombre}</strong> - {sensor.tipo} - {sensor.estado ? "🟢 Activo" : "🔴 Inactivo"}  
+        {dispositivos.map((dispositivo) => (
+          <li key={dispositivo.id} className="dispositivo-item">
+            🔌 <strong>{dispositivo.nombre}</strong> - {dispositivo.tipo} - {dispositivo.estado ? "🟢 Activo" : "🔴 Inactivo"}  
             <br />
-            📅 <em>Instalado el: {new Date(sensor.fechaInstalacion).toLocaleDateString()}</em>
+            📍 <em>Ubicación: {dispositivo.ubicacion}</em>
             <br />
-            <Link to={`/sensores/${sensor.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
+            <Link to={`/dispositivos/${dispositivo.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
           </li>
         ))}
       </ul>
