@@ -30,7 +30,7 @@ const CameraStream = () => {
 
   return (
     <div style={{ textAlign: 'center', backgroundColor: '#212529', color: '#FFFFFF', padding: '20px' }}>
-      <h3>📷 ESP32-CAM Pan & Tilt Control</h3>
+      <h3>📷 Cámara de Seguridad</h3>
 
       <div style={{ backgroundColor: '#F9F9F9', padding: '20px', borderRadius: '10px', display: 'inline-block' }}>
         {/* Video Stream */}
@@ -44,12 +44,13 @@ const CameraStream = () => {
             borderRadius: '10px',
             marginBottom: '15px',
             border: '3px solid #226DDA',
+            transform: 'rotate(180deg)', // Aplica la rotación de 180 grados
           }}
         />
 
         {/* Flash Control */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '15px' }}>
-          <span style={{ fontSize: '18px', marginRight: '10px' }}>💡 Flash</span>
+          <span style={{color:"black", fontSize: '18px', marginRight: '10px' }}>💡 Flash</span>
           <label style={{ position: 'relative', display: 'inline-block', width: '50px', height: '25px' }}>
             <input
               type="checkbox"
@@ -125,7 +126,7 @@ const CameraStream = () => {
                 transition: '0.3s',
                 boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)',
               }}
-              onClick={() => sendCommand('L')}
+              onClick={() => sendCommand('R')}
             >
               ⬅️ Izquierda
             </button>
@@ -144,7 +145,7 @@ const CameraStream = () => {
                 transition: '0.3s',
                 boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)',
               }}
-              onClick={() => sendCommand('R')}
+              onClick={() => sendCommand('L')}
             >
               ➡️ Derecha
             </button>
