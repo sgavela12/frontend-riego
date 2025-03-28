@@ -30,8 +30,6 @@ const PlantaDetail = () => {
       <p><span className="label">Fecha de Plantación:</span> <span className="value">{new Date(planta.fechaPlantacion).toLocaleDateString()}</span></p>
       <p><span className="label">¿Necesita Agua?</span> <span className="value">{planta.necesitaAgua ? "Sí" : "No"}</span></p>
       <p><span className="label">Humedad:</span> <span className="value">{planta.humedad}</span></p>
-      <p><span className="label">Temperatura:</span> <span className="value">{planta.temperatura}</span></p>
-      <p><span className="label">Ubicación:</span> <span className="value">{planta.ubicacion}</span></p>
       
       <Link to="/plantas" className="btn-back">Volver a la lista</Link>
     </div>
