@@ -23,6 +23,23 @@ const PlantasDashboard = () => {
     return () => clearInterval(interval); 
   }, []);
 
+  const regarPlanta = (id) => {
+    fetch(`http://192.168.1.150:8087/api/plantas/${id}/regar`, {
+      method: "GET",
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert(`La planta con ID ${id} ha sido regada exitosamente.`);
+        } else {
+          alert(`Hubo un problema al regar la planta con ID ${id}.`);
+        }
+      })
+      .catch((error) => {
+        console.error(`Error al regar la planta con ID ${id}:`, error);
+        alert("No se pudo conectar con el servidor.");
+      });
+  };
+
   return (
     <div>
       <h2>Lista de Plantas</h2>
@@ -34,6 +51,12 @@ const PlantasDashboard = () => {
             📅 <em>Plantado el: {new Date(planta.fechaPlantacion).toLocaleDateString()}</em>
             <br />
             <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
+            <button 
+              onClick={() => regarPlanta(planta.id)} 
+              className="btn btn-success mt-2 ms-2"
+            >
+              Regar
+            </button>
           </li>
         ))}
       </ul>
