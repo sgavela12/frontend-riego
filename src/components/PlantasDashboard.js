@@ -50,6 +50,8 @@ const PlantasDashboard = () => {
             <br />
             📅 <em>Plantado el: {new Date(planta.fechaPlantacion).toLocaleDateString()}</em>
             <br />
+            🌡️ <strong>Humedad: {planta.humedad}%</strong>
+            <br />
             <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
             <button 
               onClick={() => regarPlanta(planta.id)} 
