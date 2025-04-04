@@ -48,7 +48,7 @@ const PlantasDashboard = () => {
           <li key={planta.id} className="planta-item">
             🌱 <strong>{planta.nombre}</strong> - {planta.tipo} - {planta.necesitaAgua ? "💧 Necesita agua" : "✅ Ok"}  
             <br />
-            📅 <em>Ultimo Riego: {new Date(planta.fechaPlantacion).toLocaleDateString()}</em>
+            📅 <em>Ultimo Riego: {new Date(planta.ultimoRiego).toLocaleDateString()}</em>
             <br />
             🌡️ <strong>Humedad: {planta.humedad}%</strong>
             <br />
