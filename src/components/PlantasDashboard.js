@@ -48,8 +48,18 @@ const PlantasDashboard = () => {
           <li key={planta.id} className="planta-item">
             🌱 <strong>{planta.nombre}</strong> - {planta.tipo} - {planta.necesitaAgua ? "💧 Necesita agua" : "✅ Ok"}  
             <br />
-            📅 <em>Ultimo Riego: {new Date(planta.ultimoRiego).toLocaleDateString()}</em>
-            <br />
+            📅 <em>
+              Último Riego:
+              {planta.ultimoRiego ? (
+                <div style={{ marginLeft: "20px", marginTop: "5px" }}> 
+                  <strong>Fecha:</strong> {new Date(planta.ultimoRiego).toLocaleDateString()} 
+                  <br />
+                  <strong>Hora:</strong> {new Date(planta.ultimoRiego).toLocaleTimeString()}
+                </div>
+              ) : (
+                <span style={{ marginTop: "5px", display: "block" }}>Sin registro</span>
+              )}
+            </em>
             🌡️ <strong>Humedad: {planta.humedad}%</strong>
             <br />
             <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
