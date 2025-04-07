@@ -27,7 +27,14 @@ const PlantaDetail = () => {
       <h2>Detalles de la Planta</h2>
       <p><span className="label">Nombre:</span> <span className="value">{planta.nombre}</span></p>
       <p><span className="label">Tipo:</span> <span className="value">{planta.tipo}</span></p>
-      <p><span className="label">Fecha de Plantación:</span> <span className="value">{new Date(planta.fechaPlantacion).toLocaleDateString()}</span></p>
+      <p>
+        <span className="label">Último Riego:</span> 
+        <span className="value">
+          {planta.ultimoRiego 
+            ? new Date(planta.ultimoRiego).toLocaleString() // Muestra fecha y hora
+            : "Sin registro"}
+        </span>
+      </p>
       <p><span className="label">¿Necesita Agua?</span> <span className="value">{planta.necesitaAgua ? "Sí" : "No"}</span></p>
       <p><span className="label">Humedad:</span> <span className="value">{planta.humedad}</span></p>
       
