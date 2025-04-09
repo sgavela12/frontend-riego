@@ -3,4 +3,10 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc; /* Línea separadora opcional */
   }
-  
+
+/* Estilo para el título de la lista de plantas */
+.plantas-title {
+  text-align: center; 
+  font-size: 2rem;
+  margin-bottom: 30px; 
+}
