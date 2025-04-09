@@ -33,8 +33,9 @@
   text-decoration: underline;
 }
 
-/* Estilo general del contenido principal */
+/* Ajustar el contenido principal */
 .main-content {
+  margin-left: 250px; /* Espacio para el Sidebar */
   padding: 20px;
   transition: margin-left 0.3s ease; /* Transición suave para el desplazamiento */
 }
@@ -45,8 +46,8 @@
 }
 
 /* Cuando el Sidebar está cerrado */
-.App .main-content {
-  margin-left: 0; /* Sin margen cuando el Sidebar está oculto */
+.App.sidebar-closed .main-content {
+  margin-left: 0; /* Sin margen cuando el Sidebar está cerrado */
 }
 
 /* Media queries para pantallas más pequeñas */
@@ -58,7 +59,7 @@
   }
 
   .main-content {
-    margin-left: 0;
+    margin-left: 0; /* Sin margen en pantallas pequeñas */
     padding: 15px;
   }
 
@@ -74,7 +75,6 @@
     visibility: hidden;
   }
 }
-
 
 .sidebar {
   background-color: rgb(0, 0, 0) !important;
