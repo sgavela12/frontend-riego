@@ -23,13 +23,25 @@
 .sidebar-toggle {
   position: fixed;
   top: 20px;
-  right: 20px; /* Mover el botón al lado derecho */
-  background: none;
+  right: 20px;
+  background: #007bff; /* Fondo azul */
   border: none;
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 1100;
+  width: 40px; /* Ancho del botón */
+  height: 40px; /* Alto del botón */
+  border-radius: 50%; /* Hacer el botón redondo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para destacar el botón */
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: #0056b3; /* Cambiar el color al pasar el mouse */
 }
 
 /* Estilo de los enlaces del Sidebar */
