@@ -33,10 +33,20 @@
   text-decoration: underline;
 }
 
+/* Estilo general del contenido principal */
 .main-content {
-  flex: 1;
   padding: 20px;
-  margin-left: 250px;
+  transition: margin-left 0.3s ease; /* Transición suave para el desplazamiento */
+}
+
+/* Cuando el Sidebar está abierto */
+.App.sidebar-open .main-content {
+  margin-left: 250px; /* Espacio para el Sidebar */
+}
+
+/* Cuando el Sidebar está cerrado */
+.App .main-content {
+  margin-left: 0; /* Sin margen cuando el Sidebar está oculto */
 }
 
 /* Media queries para pantallas más pequeñas */
@@ -65,27 +75,8 @@
   }
 }
 
-@media (max-width: 480px) {
-  .sidebar {
-    width: 0;
-    padding: 0;
-    visibility: hidden;
-  }
 
-  .main-content {
-    margin-left: 0;
-    padding: 10px;
-  }
-
-  .sidebar.w-250 {
-    width: 250px;
-    padding: 20px;
-    visibility: visible;
-  }
-
-  .sidebar.w-0 {
-    width: 0;
-    padding: 0;
-    visibility: hidden;
-  }
+.sidebar {
+  background-color: rgb(0, 0, 0) !important;
+  visibility: visible !important;
 }
