@@ -4,12 +4,14 @@ import "../css/PlantasDashboard.css";
 
 const PlantasDashboard = () => {
   const [plantas, setPlantas] = useState([]);
-  const API_URL = "http://192.168.1.150:8087/api/plantas";
+  const [humedades, setHumedades] = useState({});
+  const API_URL_PLANTAS = "http://192.168.1.150:8087/api/plantas";
+  const API_URL_HUMEDAD = "http://192.168.1.150:8087/api/plantas/humedad";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch(API_URL_PLANTAS);
         const data = await response.json();
         setPlantas(data);
       } catch (error) {
@@ -18,9 +20,33 @@ const PlantasDashboard = () => {
     };
 
     fetchData(); 
-    const interval = setInterval(fetchData, 5000); // Actualiza cada 5 segundos
+    const interval = setInterval(fetchData, 15000); // Actualiza cada 5 segundos
 
     return () => clearInterval(interval); 
+  }, []);
+
+  const fetchHumedades = async () => {
+    try {
+      const response = await fetch(API_URL_HUMEDAD);
+      if (!response.ok) {
+        throw new Error(`Error en la respuesta de la API: ${response.status}`);
+      }
+      const data = await response.json();
+      const humedadMap = {};
+      data.sensores.forEach((sensor) => {
+        humedadMap[sensor.id] = sensor.humedad;
+      });
+      setHumedades(humedadMap);
+    } catch (error) {
+      console.error("Error al obtener las humedades:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchHumedades();
+    const interval = setInterval(fetchHumedades, 10000); // Actualiza cada 10 segundos
+
+    return () => clearInterval(interval);
   }, []);
 
   const regarPlanta = (id) => {
@@ -60,7 +86,10 @@ const PlantasDashboard = () => {
                 <span style={{ marginTop: "5px", display: "block" }}>Sin registro</span>
               )}
             </em>
-            🌡️ <strong>Humedad: {planta.humedad}%</strong>
+            <br />
+            🌡️ <strong>
+              Humedad: {humedades[planta.id] !== undefined ? `${humedades[planta.id]}%` : "Cargando..."}
+            </strong>
             <br />
             <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
             <button 
