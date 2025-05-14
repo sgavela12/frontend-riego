@@ -53,3 +53,81 @@
     margin-left: 0; 
   }
 }
+
+/* Estilo para el contenedor del selector */
+.modo-container {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.modo-title {
+  font-size: 1.5rem;
+  color: #444; /* Color neutro */
+  margin-bottom: 10px;
+}
+
+.modo-actual {
+  font-weight: bold;
+  color: #27ae60; /* Verde para destacar */
+}
+
+/* Estilo para el select */
+.modo-select {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #ccc; /* Borde gris claro */
+  border-radius: 5px;
+  background-color: #f4f4f4; /* Fondo gris claro */
+  color: #333; /* Texto oscuro */
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.modo-select:hover {
+  border-color: #aaa; /* Borde gris más oscuro */
+  background-color: #eaeaea; /* Fondo ligeramente más oscuro */
+}
+
+.modo-select:focus {
+  border-color: #888; /* Borde gris oscuro */
+  box-shadow: 0 0 5px rgba(136, 136, 136, 0.5); /* Sombra gris */
+}
+
+/* Botón de confirmar */
+.modo-confirmar-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #28a745; /* Verde */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modo-confirmar-btn:hover {
+  background-color: #218838; /* Verde más oscuro */
+}
+
+.modo-confirmar-btn:active {
+  background-color: #1e7e34; /* Verde aún más oscuro */
+}
+
+/* Colores para el modo actual */
+.modo-automatico {
+  color: green;
+  font-weight: bold;
+}
+
+.modo-monitoreo {
+  color: blue;
+  font-weight: bold;
+}
+
+.modo-apagado {
+  color: red;
+  font-weight: bold;
+}
