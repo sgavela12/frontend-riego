@@ -24,6 +24,13 @@ const DispositivosDashboard = () => {
     return () => clearInterval(interval); // Limpiar intervalo cuando se desmonte el componente
   }, []);
 
+  const getEstadoHumedad = (humedad) => {
+    if (humedad === undefined) return { texto: "Cargando...", color: "#bdbdbd", icon: "💧" };
+    if (humedad < 30) return { texto: "Muy seca", color: "#e57373", icon: "🌵" };
+    if (humedad > 70) return { texto: "Muy húmeda", color: "#64b5f6", icon: "💧" };
+    return { texto: "Okay", color: "#81c784", icon: "✅" };
+  };
+
   return (
     <div>
       <h2>Lista de Dispositivos</h2>
