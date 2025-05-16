@@ -5,6 +5,8 @@ import "../css/PlantasDashboard.css";
 const PlantasDashboard = () => {
   const [plantas, setPlantas] = useState([]);
   const [humedades, setHumedades] = useState({});
+  const [gotaAnimadaId, setGotaAnimadaId] = useState(null);
+  const [showToast, setShowToast] = useState(false);
   const API_URL_PLANTAS = "http://192.168.1.150:8087/api/plantas";
   const API_URL_HUMEDAD = "http://192.168.1.150:8087/api/plantas/humedad";
 
@@ -48,20 +50,18 @@ const PlantasDashboard = () => {
   }, []);
 
   const regarPlanta = (id) => {
-    fetch(`http://192.168.1.150:8087/api/plantas/${id}/regar`, {
-      method: "GET",
-    })
+    fetch(`http://192.168.1.150:8087/api/plantas/${id}/regar`, { method: "GET" })
       .then((response) => {
         if (response.ok) {
-          alert(`La planta con ID ${id} ha sido regada exitosamente.`);
+          setGotaAnimadaId(id); // Activa la animación de la gota
+          setShowToast(true);   // Muestra el toast de éxito
+          setTimeout(() => setGotaAnimadaId(null), 1200); // Oculta la gota después de la animación
+          setTimeout(() => setShowToast(false), 2000);    // Oculta el toast después de 2s
         } else {
           alert(`Hubo un problema al regar la planta con ID ${id}.`);
         }
       })
-      .catch((error) => {
-        console.error(`Error al regar la planta con ID ${id}:`, error);
-        alert("No se pudo conectar con el servidor.");
-      });
+      .catch(() => alert("No se pudo conectar con el servidor."));
   };
 
   // Estado visual y color según humedad
@@ -90,6 +90,26 @@ const PlantasDashboard = () => {
   return (
     <div className="plantas-dashboard-container">
       <h2 className="plantas-title">Lista de Plantas</h2>
+      <div className="plantas-resumen">
+        <div>
+          <strong>Total de plantas:</strong> {plantas.length}
+        </div>
+        <div>
+          <strong>Muy secas:</strong> {plantas.filter(p => {
+            const h = humedades[p.id];
+            return h !== undefined && h < 30;
+          }).length}
+        </div>
+        <div>
+          <strong>Humedad media:</strong> {
+            plantas.length > 0
+              ? Math.round(
+                  plantas.reduce((acc, p) => acc + (humedades[p.id] || 0), 0) / plantas.length
+                )
+              : 0
+          }%
+        </div>
+      </div>
       <ul className="plantas-lista">
         {plantas.map((planta) => {
           const humedad = humedades[planta.id];
@@ -97,7 +117,7 @@ const PlantasDashboard = () => {
           return (
             <li
               key={planta.id}
-              className="planta-item"
+              className={`planta-item${humedad < 30 ? ' alerta-parpadeo' : ''}`}
               style={{
                 border: `2px solid ${estado.color}`,
                 boxShadow: `0 2px 12px ${estado.color}33`,
@@ -106,6 +126,7 @@ const PlantasDashboard = () => {
             >
               <span className="planta-nombre-tipo">
                 🌱 <strong>{planta.nombre}</strong> - {planta.tipo}
+                {gotaAnimadaId === planta.id && <span className="gota-animada">💧</span>}
               </span>
               <span className="estado-humedad" style={{ color: estado.color, fontWeight: "bold" }}>
                 {estado.icon} {estado.texto}
@@ -136,6 +157,7 @@ const PlantasDashboard = () => {
           );
         })}
       </ul>
+      {showToast && <div className="toast-exito">¡Planta regada con éxito! 💧</div>}
     </div>
   );
 };
