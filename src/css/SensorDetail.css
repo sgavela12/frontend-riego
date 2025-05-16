@@ -87,37 +87,65 @@
     }
   }
 
-.edit-form {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-control {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.form-check-input {
-  margin-left: 0;
-}
-
-.btn {
-  margin-right: 10px;
-}
+  .edit-form {
+    background: #232a36;
+    color: #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px #11182733;
+    padding: 28px 20px;
+    margin: 0 auto 24px auto;
+    max-width: 420px;
+  }
+  
+  .edit-form label {
+    color: #b0bec5;
+    font-weight: 500;
+  }
+  
+  .edit-form input,
+  .edit-form select {
+    background: #181c23;
+    color: #e0e0e0;
+    border: 1px solid #263b68;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+  
+  .edit-form input:focus,
+  .edit-form select:focus {
+    border-color: #90caf9;
+    outline: none;
+  }
+  
+  .edit-form .form-check-input[type="radio"] {
+    accent-color: #1565c0;
+    margin-right: 6px;
+  }
+  
+  .edit-form .btn {
+    background: #1565c0;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-top: 10px;
+    transition: background 0.3s;
+  }
+  
+  .edit-form .btn:hover {
+    background: #1976d2;
+  }
+  
+  .edit-form .btn-secondary {
+    background: #263b68;
+    color: #fff;
+  }
+  .edit-form .btn-secondary:hover {
+    background: #1a233a;
+  }
 
 
