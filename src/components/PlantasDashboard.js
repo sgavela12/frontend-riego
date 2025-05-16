@@ -13,6 +13,7 @@ const PlantasDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [busqueda, setBusqueda] = useState("");
   const [filtroEstado, setFiltroEstado] = useState("todos");
+  const [mostrarFiltros, setMostrarFiltros] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,28 +121,46 @@ const PlantasDashboard = () => {
 
   return (
     <div className="plantas-dashboard-container">
-      <h2 className="plantas-title">Lista de Plantas</h2>
+      <div className="plantas-titulo-barra">
+        <span className="plantas-title">Lista de Plantas</span>
+        <button
+          className="btn-lupa"
+          aria-label="Mostrar filtros"
+          onClick={() => setMostrarFiltros(v => !v)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "1.7rem",
+            marginLeft: "12px"
+          }}
+        >
+          🔍
+        </button>
+      </div>
 
       {/* Filtros de búsqueda y estado */}
-      <div className="plantas-filtros">
-        <input
-          type="text"
-          placeholder="Buscar planta por nombre..."
-          value={busqueda}
-          onChange={e => setBusqueda(e.target.value)}
-          className="input-busqueda"
-        />
-        <select
-          value={filtroEstado}
-          onChange={e => setFiltroEstado(e.target.value)}
-          className="select-filtro"
-        >
-          <option value="todos">Todas</option>
-          <option value="optima">Óptima</option>
-          <option value="baja">Humedad Baja</option>
-          <option value="alta">Humedad Alta</option>
-        </select>
-      </div>
+      {mostrarFiltros && (
+        <div className="plantas-filtros">
+          <input
+            type="text"
+            placeholder="Buscar planta por nombre..."
+            value={busqueda}
+            onChange={e => setBusqueda(e.target.value)}
+            className="input-busqueda"
+          />
+          <select
+            value={filtroEstado}
+            onChange={e => setFiltroEstado(e.target.value)}
+            className="select-filtro"
+          >
+            <option value="todos">Todas</option>
+            <option value="optima">Óptima</option>
+            <option value="baja">Humedad Baja</option>
+            <option value="alta">Humedad Alta</option>
+          </select>
+        </div>
+      )}
 
       <div className="plantas-resumen">
         <div>

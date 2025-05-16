@@ -11,12 +11,13 @@ body {
 }
 
 .plantas-title {
-  text-align: center;
   font-size: 2.3rem;
-  margin-bottom: 35px;
   color: #90caf9;
   letter-spacing: 1px;
   font-weight: 700;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 /* Estilo para el título de la lista de plantas */
@@ -237,6 +238,11 @@ body.modo-oscuro .gota-animada {
   margin-bottom: 18px;
   justify-content: center;
   flex-wrap: wrap;
+  animation: fadeInDown 0.4s;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
 .input-busqueda, .select-filtro {
@@ -250,4 +256,24 @@ body.modo-oscuro .gota-animada {
 }
 .input-busqueda:focus, .select-filtro:focus {
   border-color: #90caf9;
+}
+
+.btn-lupa {
+  color: #90caf9;
+  transition: color 0.2s;
+  font-size: 2.1rem;
+  display: flex;
+  align-items: center;
+  margin-top: -30px; /* Sube la lupa para alinearla mejor */
+}
+.btn-lupa:hover {
+  color: #fff;
+}
+
+.plantas-titulo-barra {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra ambos en el contenedor */
+  margin-bottom: 35px;
+  gap: 8px; /* Espacio pequeño entre título y lupita */
 }
