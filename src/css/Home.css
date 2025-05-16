@@ -21,10 +21,13 @@ body {
 .home-title {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 18px;
+  margin-bottom: 36px;      /* Más separación */
   color: #90caf9;
   font-weight: 700;
   text-shadow: 0 2px 8px #263b68;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #263b68; /* Línea sutil debajo */
+  padding-bottom: 12px;
 }
 
 .home-description {
@@ -224,7 +227,9 @@ body {
     padding: 18px 4vw 18px 4vw;
   }
   .home-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;      /* Un poco más grande en móvil */
+    margin-bottom: 28px;    /* Más separación en móvil */
+    padding-bottom: 10px;
   }
   .home-description {
     font-size: 1rem;
