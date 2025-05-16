@@ -17,7 +17,6 @@ body {
   color: #90caf9;
   letter-spacing: 1px;
   font-weight: 700;
-  text-shadow: 0 2px 8px #263b68;
 }
 
 /* Estilo para el título de la lista de plantas */
@@ -27,7 +26,6 @@ body {
   margin-bottom: 35px;;
   letter-spacing: 1px;
   font-weight: 700;
-  text-shadow: 0 2px 8px #e0e0e0;
 }
 
 .planta-item {
@@ -214,7 +212,6 @@ body.modo-oscuro .planta-item {
 }
 body.modo-oscuro .plantas-title {
   color: #90caf9;
-  text-shadow: 0 2px 8px #263b68;
 }
 body.modo-oscuro .plantas-resumen {
   background: #232a36;
