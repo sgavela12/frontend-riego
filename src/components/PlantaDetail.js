@@ -142,32 +142,27 @@ const PlantaDetail = () => {
   };
 
   const chartOptions = {
-    responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        labels: {
+          color: "#fff" // Letras de la leyenda en blanco
+        }
       },
       title: {
         display: true,
-        text: `Historial de Riegos (${rango === 'anual' ? 'Último Año' : rango === 'mensual' ? 'Último Mes' : rango === 'semanal' ? 'Última Semana' : rango === 'diario' ? 'Hoy por Horas' : 'Últimas 2 Semanas'})`,
-      },
+        text: "Histórico de humedad",
+        color: "#fff" // Título en blanco
+      }
     },
     scales: {
       x: {
-        title: {
-          display: true,
-          text: rango === 'diario' ? 'Hora' : 'Fecha', // Etiqueta del eje X
-        },
+        ticks: { color: "#fff" }, // Eje X en blanco
+        grid: { color: "#444" }
       },
       y: {
-        title: {
-          display: true,
-          text: 'Cantidad de Veces', // Etiqueta del eje Y
-        },
-        ticks: {
-          stepSize: 1, // Incrementos de 1 en el eje Y
-        },
-      },
+        ticks: { color: "#fff" }, // Eje Y en blanco
+        grid: { color: "#444" }
+      }
     },
   };
 
