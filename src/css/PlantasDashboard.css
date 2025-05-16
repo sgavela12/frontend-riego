@@ -16,3 +16,19 @@
   display: inline-block;
   margin-bottom: 5px;
 }
+
+.plantas-lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 900px) {
+  .plantas-lista {
+    grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas grandes */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

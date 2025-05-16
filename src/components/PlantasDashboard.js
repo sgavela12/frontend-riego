@@ -77,7 +77,7 @@ const PlantasDashboard = () => {
   return (
     <div>
       <h2 className="plantas-title">Lista de Plantas</h2>
-      <ul>
+      <ul className="plantas-lista">
         {plantas.map((planta) => (
           <li key={planta.id} className="planta-item">
             <span className="planta-nombre-tipo">
