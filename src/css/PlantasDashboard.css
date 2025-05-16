@@ -229,3 +229,25 @@ body.modo-oscuro .gota-animada {
   box-shadow: 0 0 8px #42a5f5;
   filter: drop-shadow(0 0 6px #42a5f5);
 }
+
+/* Puedes poner esto en PlantasDashboard.css */
+.plantas-filtros {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.input-busqueda, .select-filtro {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #263b68;
+  background: #232a36;
+  color: #e0e0e0;
+  font-size: 1rem;
+  outline: none;
+}
+.input-busqueda:focus, .select-filtro:focus {
+  border-color: #90caf9;
+}

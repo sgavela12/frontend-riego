@@ -11,6 +11,8 @@ const PlantasDashboard = () => {
   const [gotaAnimadaId, setGotaAnimadaId] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
+  const [filtroEstado, setFiltroEstado] = useState("todos");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +81,13 @@ const PlantasDashboard = () => {
     return { texto: "Okay", color: "#81c784", icon: "✅" };
   };
 
+  // Ejemplo de función para obtener el estado de humedad
+  function getEstadoHumedadTexto(humedad) {
+    if (humedad < 30) return "Baja";
+    if (humedad > 70) return "Alta";
+    return "Óptima";
+  }
+
   // Barra de progreso de humedad
   const HumedadBar = ({ humedad, color }) => (
     <div className="humedad-bar-bg">
@@ -94,9 +103,46 @@ const PlantasDashboard = () => {
     </div>
   );
 
+  // Filtrado de plantas por búsqueda y estado
+  const plantasFiltradas = plantas
+    .filter(planta =>
+      planta.nombre.toLowerCase().includes(busqueda.toLowerCase())
+    )
+    .filter(planta => {
+      if (filtroEstado === "todos") return true;
+      const humedad = humedades[planta.id];
+      const estado = getEstadoHumedadTexto(humedad);
+      if (filtroEstado === "optima") return estado === "Óptima";
+      if (filtroEstado === "baja") return estado === "Baja";
+      if (filtroEstado === "alta") return estado === "Alta";
+      return true;
+    });
+
   return (
     <div className="plantas-dashboard-container">
       <h2 className="plantas-title">Lista de Plantas</h2>
+
+      {/* Filtros de búsqueda y estado */}
+      <div className="plantas-filtros">
+        <input
+          type="text"
+          placeholder="Buscar planta por nombre..."
+          value={busqueda}
+          onChange={e => setBusqueda(e.target.value)}
+          className="input-busqueda"
+        />
+        <select
+          value={filtroEstado}
+          onChange={e => setFiltroEstado(e.target.value)}
+          className="select-filtro"
+        >
+          <option value="todos">Todas</option>
+          <option value="optima">Óptima</option>
+          <option value="baja">Humedad Baja</option>
+          <option value="alta">Humedad Alta</option>
+        </select>
+      </div>
+
       <div className="plantas-resumen">
         <div>
           <strong>Total de plantas:</strong> {plantas.length}
@@ -118,7 +164,7 @@ const PlantasDashboard = () => {
         </div>
       </div>
       <ul className="plantas-lista">
-        {plantas.map((planta) => {
+        {plantasFiltradas.map(planta => {
           const humedad = humedades[planta.id];
           const estado = getEstadoHumedad(humedad);
           return (
