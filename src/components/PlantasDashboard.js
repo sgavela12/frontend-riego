@@ -1,14 +1,16 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/PlantasDashboard.css";
+
+const API_URL_PLANTAS = "http://192.168.1.150:8087/api/plantas";
+const API_URL_HUMEDAD = "http://192.168.1.150:8087/api/plantas/humedad";
 
 const PlantasDashboard = () => {
   const [plantas, setPlantas] = useState([]);
   const [humedades, setHumedades] = useState({});
   const [gotaAnimadaId, setGotaAnimadaId] = useState(null);
   const [showToast, setShowToast] = useState(false);
-  const API_URL_PLANTAS = "http://192.168.1.150:8087/api/plantas";
-  const API_URL_HUMEDAD = "http://192.168.1.150:8087/api/plantas/humedad";
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,6 +65,11 @@ const PlantasDashboard = () => {
       })
       .catch(() => alert("No se pudo conectar con el servidor."));
   };
+
+  // Cambia la clase del body cuando cambia el modo
+  useEffect(() => {
+    document.body.classList.toggle("modo-oscuro", darkMode);
+  }, [darkMode]);
 
   // Estado visual y color según humedad
   const getEstadoHumedad = (humedad) => {

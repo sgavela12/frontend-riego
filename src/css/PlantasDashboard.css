@@ -1,8 +1,24 @@
-.planta-item {
-    margin-bottom: 15px; /* Espacio entre cada planta */
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc; /* Línea separadora opcional */
-  }
+body {
+  background: #181c23;
+  color: #e0e0e0;
+}
+
+/* Mejora el fondo y el padding del contenedor principal */
+.plantas-dashboard-container {
+  background: #181c23;
+  padding: 40px 0 30px 0;
+  min-height: 100vh;
+}
+
+.plantas-title {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 35px;
+  color: #90caf9;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #263b68;
+}
 
 /* Estilo para el título de la lista de plantas */
 .plantas-title {
@@ -15,21 +31,21 @@
 }
 
 .planta-item {
-  background: #fff;
+  background: #232a36;
   border-radius: 12px;
   margin-bottom: 0;
   padding: 22px 24px 18px 24px;
-  border: 2px solid #bdbdbd;
+  border: 2px solid #263b68;
   transition: box-shadow 0.4s, border 0.4s;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+  box-shadow: 0 2px 12px #263b6844;
   animation: fadeInCard 0.7s;
 }
 
 .planta-item:hover {
-  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.13);
+  box-shadow: 0 4px 20px #263b68;
 }
 
 .planta-nombre-tipo {
@@ -48,7 +64,7 @@
 
 .humedad-bar-bg {
   width: 100%;
-  background: #e0e0e0;
+  background: #263b68;
   border-radius: 8px;
   height: 18px;
   margin-bottom: 10px;
@@ -69,7 +85,7 @@
   transform: translateX(-50%);
   font-size: 0.95rem;
   font-weight: bold;
-  color: #333;
+  color: #e0e0e0;
   line-height: 18px;
 }
 
@@ -90,13 +106,6 @@
   }
 }
 
-/* Mejora el fondo y el padding del contenedor principal */
-.plantas-dashboard-container {
-  background: #f8fafc;
-  padding: 40px 0 30px 0;
-  min-height: 100vh;
-}
-
 .planta-botones {
   width: 100%;
   display: flex;
@@ -111,21 +120,22 @@
   gap: 40px;
   margin-bottom: 25px;
   font-size: 1.15rem;
-  background: #f1f8e9;
+  background: #232a36;
   border-radius: 10px;
   padding: 14px 0;
-  box-shadow: 0 2px 8px #e0e0e0;
+  box-shadow: 0 2px 8px #263b68;
+  color: #e0e0e0;
 }
 
 .gota-animada {
   display: inline-block;
   animation: caer-gota 1s cubic-bezier(.4,2,.6,1);
-  background: #e3f2fd;           /* Azul clarito */
+  background: #1565c0;
   border-radius: 50%;
   padding: 2px 8px;
   margin-left: 8px;
-  box-shadow: 0 0 8px #90caf9;
-  filter: drop-shadow(0 0 6px #90caf9);
+  box-shadow: 0 0 8px #42a5f5;
+  filter: drop-shadow(0 0 6px #42a5f5);
   font-size: 1.5em;
 }
 
@@ -140,7 +150,7 @@
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: #263b68;
+  background: #388e3c;
   color: #fff;
   padding: 16px 32px;
   border-radius: 8px;
@@ -167,4 +177,58 @@
 @keyframes fadeInCard {
   from { opacity: 0; transform: translateY(30px);}
   to { opacity: 1; transform: translateY(0);}
+}
+
+/* Botón modo oscuro */
+.btn-modo-oscuro {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  background: #263b68;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #bdbdbd;
+  transition: background 0.3s, color 0.3s;
+  z-index: 100;
+}
+.btn-modo-oscuro:hover {
+  background: #1a233a;
+}
+
+/* Modo oscuro general */
+body.modo-oscuro {
+  background: #181c23;
+  color: #e0e0e0;
+}
+body.modo-oscuro .plantas-dashboard-container {
+  background: #181c23;
+}
+body.modo-oscuro .planta-item {
+  background: #232a36;
+  border-color: #263b68;
+  box-shadow: 0 2px 12px #263b6844;
+}
+body.modo-oscuro .plantas-title {
+  color: #90caf9;
+  text-shadow: 0 2px 8px #263b68;
+}
+body.modo-oscuro .plantas-resumen {
+  background: #232a36;
+  color: #e0e0e0;
+}
+body.modo-oscuro .humedad-bar-bg {
+  background: #263b68;
+}
+body.modo-oscuro .toast-exito {
+  background: #388e3c;
+  color: #fff;
+}
+body.modo-oscuro .gota-animada {
+  background: #1565c0;
+  box-shadow: 0 0 8px #42a5f5;
+  filter: drop-shadow(0 0 6px #42a5f5);
 }
