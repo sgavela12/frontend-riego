@@ -90,15 +90,12 @@ body {
 }
 
 .modo-automatico {
-  background: #97d49b;
   color: #a5d6a7;
 }
 .modo-monitoreo {
-  background: #7794b6;
   color: #90caf9;
 }
 .modo-apagado {
-  background: #ffc6c6;
   color: #ffcdd2;
 }
 
@@ -155,12 +152,12 @@ body {
 
 /* Colores para el modo actual */
 .modo-automatico {
-  color: green;
+  color: rgb(5, 182, 5);
   font-weight: bold;
 }
 
 .modo-monitoreo {
-  color: blue;
+  color: rgb(54, 214, 219);
   font-weight: bold;
 }
 
