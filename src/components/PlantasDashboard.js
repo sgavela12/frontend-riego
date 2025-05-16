@@ -75,7 +75,7 @@ const PlantasDashboard = () => {
   };
 
   return (
-    <div>
+    <div className="plantas-dashboard-container">
       <h2 className="plantas-title">Lista de Plantas</h2>
       <ul className="plantas-lista">
         {plantas.map((planta) => (
@@ -103,17 +103,21 @@ const PlantasDashboard = () => {
               )}
             </em>
             <br />
-            🌡️ <strong>
-              Humedad: {humedades[planta.id] !== undefined ? `${humedades[planta.id]}%` : "Cargando..."}
-            </strong>
+            <span>
+              🌡️ <strong>
+                Humedad: {humedades[planta.id] !== undefined ? `${humedades[planta.id]}%` : "Cargando..."}
+              </strong>
+            </span>
             <br />
-            <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
-            <button 
-              onClick={() => regarPlanta(planta.id)} 
-              className="btn btn-success mt-2 ms-2"
-            >
-              Regar
-            </button>
+            <div className="planta-botones">
+              <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
+              <button 
+                onClick={() => regarPlanta(planta.id)} 
+                className="btn btn-success mt-2 ms-2"
+              >
+                Regar
+              </button>
+            </div>
           </li>
         ))}
       </ul>

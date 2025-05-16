@@ -6,29 +6,65 @@
 
 /* Estilo para el título de la lista de plantas */
 .plantas-title {
-  text-align: center; 
-  font-size: 2rem;
-  margin-bottom: 30px; 
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px #e0e0e0;
+}
+
+.planta-item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.07);
+  margin-bottom: 0;
+  padding: 22px 24px 18px 24px;
+  border: none;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.planta-item:hover {
+  box-shadow: 0 4px 20px rgba(44, 62, 80, 0.13);
 }
 
 .planta-nombre-tipo {
-  font-size: 1.35rem;
-  display: inline-block;
-  margin-bottom: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .plantas-lista {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 0;
+  gap: 28px;
+  padding: 0 10px;
   list-style: none;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 @media (min-width: 900px) {
   .plantas-lista {
-    grid-template-columns: 1fr 1fr; /* Dos columnas en pantallas grandes */
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
+}
+
+/* Mejora el fondo y el padding del contenedor principal */
+.plantas-dashboard-container {
+  background: #f8fafc;
+  padding: 40px 0 30px 0;
+  min-height: 100vh;
+}
+
+.planta-botones {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
