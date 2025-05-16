@@ -7,6 +7,8 @@ const Home = () => {
   const [ambiente, setAmbiente] = useState({ temperatura: 0, humedad: 0 });
   const [modo, setModo] = useState("Cargando...");
   const [nuevoModo, setNuevoModo] = useState(""); // Estado para el modo seleccionado
+  const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
+  const [modoPendiente, setModoPendiente] = useState(""); // Estado para el modo pendiente
 
   // Función para obtener el modo
   const fetchModo = async () => {
@@ -66,13 +68,21 @@ const Home = () => {
 
   // Manejar el cambio en el select con confirmación
   const handleSelectChange = (e) => {
-    const nuevoModoSeleccionado = e.target.value;
-    const confirmacion = window.confirm(`¿Estás seguro de que deseas cambiar el modo a ${nuevoModoSeleccionado}?`);
-    if (confirmacion) {
-      cambiarModo(nuevoModoSeleccionado);
-    } else {
-      setNuevoModo(modo); // Restablecer el select al modo actual si se cancela
-    }
+    setModoPendiente(e.target.value);
+    setMostrarConfirmacion(true);
+  };
+
+  // Confirmar el cambio de modo
+  const confirmarCambioModo = () => {
+    cambiarModo(modoPendiente);
+    setMostrarConfirmacion(false);
+    setModoPendiente("");
+  };
+
+  const cancelarCambioModo = () => {
+    setNuevoModo(modo); // Vuelve al modo actual
+    setMostrarConfirmacion(false);
+    setModoPendiente("");
   };
 
   // Determinar la clase de color según el modo actual
@@ -115,6 +125,19 @@ const Home = () => {
           <option value="APAGADO">Apagado</option>
         </select>
       </div>
+
+      {/* Cuadro de confirmación */}
+      {mostrarConfirmacion && (
+        <div className="modal-confirmacion">
+          <div className="modal-contenido">
+            <p>¿Estás seguro de que deseas cambiar el modo a <strong>{modoPendiente}</strong>?</p>
+            <div className="modal-botones">
+              <button className="btn btn-primary" onClick={confirmarCambioModo}>Sí, cambiar</button>
+              <button className="btn btn-secondary" onClick={cancelarCambioModo}>Cancelar</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Botones de navegación */}
       <div className="home-buttons">
