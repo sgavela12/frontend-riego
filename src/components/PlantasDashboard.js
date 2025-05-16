@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import "../css/PlantasDashboard.css"; 
+import "../css/PlantasDashboard.css";
 
 const PlantasDashboard = () => {
   const [plantas, setPlantas] = useState([]);
@@ -19,10 +19,9 @@ const PlantasDashboard = () => {
       }
     };
 
-    fetchData(); 
-    const interval = setInterval(fetchData, 15000); // Actualiza cada 5 segundos
-
-    return () => clearInterval(interval); 
+    fetchData();
+    const interval = setInterval(fetchData, 15000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchHumedades = async () => {
@@ -44,8 +43,7 @@ const PlantasDashboard = () => {
 
   useEffect(() => {
     fetchHumedades();
-    const interval = setInterval(fetchHumedades, 10000); // Actualiza cada 10 segundos
-
+    const interval = setInterval(fetchHumedades, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -66,60 +64,77 @@ const PlantasDashboard = () => {
       });
   };
 
-  // Función para determinar el estado de la humedad
+  // Estado visual y color según humedad
   const getEstadoHumedad = (humedad) => {
-    if (humedad === undefined) return "Cargando...";
-    if (humedad < 30) return "🌵 Muy seca";
-    if (humedad > 70) return "💧 Muy húmeda";
-    return "✅ Okay";
+    if (humedad === undefined) return { texto: "Cargando...", color: "#bdbdbd", icon: "💧" };
+    if (humedad < 30) return { texto: "Muy seca", color: "#e57373", icon: "🌵" };
+    if (humedad > 70) return { texto: "Muy húmeda", color: "#64b5f6", icon: "💧" };
+    return { texto: "Okay", color: "#81c784", icon: "✅" };
   };
+
+  // Barra de progreso de humedad
+  const HumedadBar = ({ humedad, color }) => (
+    <div className="humedad-bar-bg">
+      <div
+        className="humedad-bar-fill"
+        style={{
+          width: `${humedad || 0}%`,
+          background: color,
+          transition: "width 0.8s cubic-bezier(.4,2,.6,1)"
+        }}
+      />
+      <span className="humedad-bar-label">{humedad !== undefined ? `${humedad}%` : "Cargando..."}</span>
+    </div>
+  );
 
   return (
     <div className="plantas-dashboard-container">
       <h2 className="plantas-title">Lista de Plantas</h2>
       <ul className="plantas-lista">
-        {plantas.map((planta) => (
-          <li key={planta.id} className="planta-item">
-            <span className="planta-nombre-tipo">
-              🌱 <strong>{planta.nombre}</strong> - {planta.tipo}
-            </span>
-            <br />
-            <span>
-              {humedades[planta.id] !== undefined
-                ? getEstadoHumedad(humedades[planta.id])
-                : "Cargando..."}
-            </span>
-            <br />
-            <strong>📅 Último Riego:</strong>
-            <em>
-              {planta.ultimoRiego ? (
-                <div style={{ marginLeft: "20px", marginTop: "5px" }}>
-                  <strong>Fecha:</strong> {new Date(planta.ultimoRiego).toLocaleDateString()}
-                  <br />
-                  <strong>Hora:</strong> {new Date(planta.ultimoRiego).toLocaleTimeString()}
-                </div>
-              ) : (
-                <span style={{ marginTop: "5px", display: "block" }}>Sin registro</span>
-              )}
-            </em>
-            <br />
-            <span>
-              🌡️ <strong>
-                Humedad: {humedades[planta.id] !== undefined ? `${humedades[planta.id]}%` : "Cargando..."}
-              </strong>
-            </span>
-            <br />
-            <div className="planta-botones">
-              <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
-              <button 
-                onClick={() => regarPlanta(planta.id)} 
-                className="btn btn-success mt-2 ms-2"
-              >
-                Regar
-              </button>
-            </div>
-          </li>
-        ))}
+        {plantas.map((planta) => {
+          const humedad = humedades[planta.id];
+          const estado = getEstadoHumedad(humedad);
+          return (
+            <li
+              key={planta.id}
+              className="planta-item"
+              style={{
+                border: `2px solid ${estado.color}`,
+                boxShadow: `0 2px 12px ${estado.color}33`,
+                transition: "border 0.4s, box-shadow 0.4s"
+              }}
+            >
+              <span className="planta-nombre-tipo">
+                🌱 <strong>{planta.nombre}</strong> - {planta.tipo}
+              </span>
+              <span className="estado-humedad" style={{ color: estado.color, fontWeight: "bold" }}>
+                {estado.icon} {estado.texto}
+              </span>
+              <HumedadBar humedad={humedad} color={estado.color} />
+              <strong>📅 Último Riego:</strong>
+              <em>
+                {planta.ultimoRiego ? (
+                  <div style={{ marginLeft: "20px", marginTop: "5px" }}>
+                    <strong>Fecha:</strong> {new Date(planta.ultimoRiego).toLocaleDateString()}
+                    <br />
+                    <strong>Hora:</strong> {new Date(planta.ultimoRiego).toLocaleTimeString()}
+                  </div>
+                ) : (
+                  <span style={{ marginTop: "5px", display: "block" }}>Sin registro</span>
+                )}
+              </em>
+              <div className="planta-botones">
+                <Link to={`/plantas/${planta.id}`} className="btn btn-primary mt-2">Ver Detalles</Link>
+                <button
+                  onClick={() => regarPlanta(planta.id)}
+                  className="btn btn-success mt-2 ms-2"
+                >
+                  Regar
+                </button>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
