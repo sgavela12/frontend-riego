@@ -193,11 +193,11 @@ const PlantaDetail = () => {
         </span>
       </p>
       <p>
-        <span className="label">Estado de Humedad:</span>
+        <span className="label">Estado de Humedad: </span>
         <span className="value">{getEstadoHumedad(humedad)}</span>
       </p>
       <p>
-        <span className="label">Humedad:</span>
+        <span className="label">Humedad: </span>
         <span className="value">{humedad !== undefined ? `${humedad}%` : "Cargando..."}</span>
       </p>
 
