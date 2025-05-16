@@ -15,9 +15,12 @@ import "../css/PlantaDetail.css";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
+const API_URL_HUMEDAD = "http://192.168.1.150:8087/api/plantas/humedad";
+
 const PlantaDetail = () => {
   const { id } = useParams(); // Obtenemos el id de la planta desde la URL
   const [planta, setPlanta] = useState(null);
+  const [humedad, setHumedad] = useState(undefined);
   const [registros, setRegistros] = useState([]); // Estado para los registros de la planta
   const [rango, setRango] = useState('2semanas'); // Estado para el rango de fechas seleccionado
 
@@ -34,6 +37,26 @@ const PlantaDetail = () => {
     };
 
     fetchPlanta();
+  }, [id]);
+
+  // Función para obtener la humedad de la planta
+  useEffect(() => {
+    const fetchHumedad = async () => {
+      try {
+        const response = await fetch(API_URL_HUMEDAD);
+        const data = await response.json();
+        const sensor = data.sensores.find((s) => String(s.id) === String(id));
+        setHumedad(sensor ? sensor.humedad : undefined);
+      } catch (error) {
+        console.error("Error al obtener la humedad:", error);
+      }
+    };
+
+    fetchHumedad();
+
+    // Actualizar la humedad cada 10 segundos
+    const interval = setInterval(fetchHumedad, 10000);
+    return () => clearInterval(interval); // Limpiar el intervalo al desmontar el componente
   }, [id]);
 
   // Función para obtener los registros de la planta
@@ -148,6 +171,14 @@ const PlantaDetail = () => {
     },
   };
 
+  // Función para determinar el estado de la humedad
+  const getEstadoHumedad = (humedad) => {
+    if (humedad === undefined || humedad === null) return "Cargando...";
+    if (humedad < 30) return "🌵 Muy seca";
+    if (humedad > 70) return "💧 Muy húmeda";
+    return "✅ Okay";
+  };
+
   return (
     <div className="planta-detail">
       <h2>Detalles de la Planta</h2>
@@ -157,12 +188,18 @@ const PlantaDetail = () => {
         <span className="label">Último Riego:</span> 
         <span className="value">
           {planta.ultimoRiego 
-            ? new Date(planta.ultimoRiego).toLocaleString() // Muestra fecha y hora
+            ? new Date(planta.ultimoRiego).toLocaleString()
             : "Sin registro"}
         </span>
       </p>
-      <p><span className="label">¿Necesita Agua?</span> <span className="value">{planta.necesitaAgua ? "Sí" : "No"}</span></p>
-      <p><span className="label">Humedad:</span> <span className="value">{planta.humedad}</span></p>
+      <p>
+        <span className="label">Estado de Humedad:</span>
+        <span className="value">{getEstadoHumedad(humedad)}</span>
+      </p>
+      <p>
+        <span className="label">Humedad:</span>
+        <span className="value">{humedad !== undefined ? `${humedad}%` : "Cargando..."}</span>
+      </p>
 
       {/* Selector de rango */}
       <div className="rango-selector" style={{ marginBottom: '20px' }}>

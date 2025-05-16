@@ -10,3 +10,9 @@
   font-size: 2rem;
   margin-bottom: 30px; 
 }
+
+.planta-nombre-tipo {
+  font-size: 1.35rem;
+  display: inline-block;
+  margin-bottom: 5px;
+}

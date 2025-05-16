@@ -66,19 +66,35 @@ const PlantasDashboard = () => {
       });
   };
 
+  // Función para determinar el estado de la humedad
+  const getEstadoHumedad = (humedad) => {
+    if (humedad === undefined) return "Cargando...";
+    if (humedad < 30) return "🌵 Muy seca";
+    if (humedad > 70) return "💧 Muy húmeda";
+    return "✅ Okay";
+  };
+
   return (
     <div>
       <h2 className="plantas-title">Lista de Plantas</h2>
       <ul>
         {plantas.map((planta) => (
           <li key={planta.id} className="planta-item">
-            🌱 <strong>{planta.nombre}</strong> - {planta.tipo} - {planta.necesitaAgua ? "💧 Necesita agua" : "✅ Ok"}  
+            <span className="planta-nombre-tipo">
+              🌱 <strong>{planta.nombre}</strong> - {planta.tipo}
+            </span>
             <br />
-            📅 <em>
-              Último Riego:
+            <span>
+              {humedades[planta.id] !== undefined
+                ? getEstadoHumedad(humedades[planta.id])
+                : "Cargando..."}
+            </span>
+            <br />
+            <strong>📅 Último Riego:</strong>
+            <em>
               {planta.ultimoRiego ? (
-                <div style={{ marginLeft: "20px", marginTop: "5px" }}> 
-                  <strong>Fecha:</strong> {new Date(planta.ultimoRiego).toLocaleDateString()} 
+                <div style={{ marginLeft: "20px", marginTop: "5px" }}>
+                  <strong>Fecha:</strong> {new Date(planta.ultimoRiego).toLocaleDateString()}
                   <br />
                   <strong>Hora:</strong> {new Date(planta.ultimoRiego).toLocaleTimeString()}
                 </div>
