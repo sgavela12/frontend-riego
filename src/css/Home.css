@@ -317,3 +317,14 @@ body {
 .home-buttons {
   animation: fadeInUp 0.7s cubic-bezier(.4,2,.6,1);
 }
+
+.error-ambiente {
+  background: #e57373;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px #263b6844;
+}

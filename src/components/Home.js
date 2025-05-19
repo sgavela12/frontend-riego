@@ -9,6 +9,7 @@ const Home = () => {
   const [nuevoModo, setNuevoModo] = useState(""); // Estado para el modo seleccionado
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
   const [modoPendiente, setModoPendiente] = useState(""); // Estado para el modo pendiente
+  const [errorAmbiente, setErrorAmbiente] = useState(false); // Estado para manejar errores
 
   // Función para obtener el modo
   const fetchModo = async () => {
@@ -30,9 +31,14 @@ const Home = () => {
     try {
       const response = await fetch("http://192.168.1.150:8087/api/plantas/ambiente");
       const data = await response.json();
-      setAmbiente(data);
+      if (data.error === "Error al leer del sensor DHT22") {
+        setErrorAmbiente(true);
+      } else {
+        setErrorAmbiente(false);
+        setAmbiente(data);
+      }
     } catch (error) {
-      console.error("Error al obtener los datos del ambiente:", error);
+      setErrorAmbiente(true);
     }
   };
 
@@ -99,16 +105,22 @@ const Home = () => {
       <p className="home-description">Administra y monitorea tus dispositivos de riego de manera eficiente.</p>
 
       {/* Indicadores visuales */}
-      <div className="indicadores-ambiente">
-        <div className="indicador">
-          <span className="icon">🌡️</span>
-          <strong>Temperatura:</strong> {ambiente.temperatura}°C
+      {errorAmbiente ? (
+        <div className="error-ambiente">
+          ⚠️ Error al medir la temperatura y humedad. Intenta más tarde.
         </div>
-        <div className="indicador">
-          <span className="icon">💧</span>
-          <strong>Humedad:</strong> {ambiente.humedad}%
+      ) : (
+        <div className="indicadores-ambiente">
+          <div className="indicador">
+            <span className="icon">🌡️</span>
+            <strong>Temperatura:</strong> {ambiente.temperatura}°C
+          </div>
+          <div className="indicador">
+            <span className="icon">💧</span>
+            <strong>Humedad:</strong> {ambiente.humedad}%
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Selector de modo */}
       <div className="modo-container">
@@ -138,6 +150,8 @@ const Home = () => {
           </div>
         </div>
       )}
+
+   
 
       {/* Botones de navegación */}
       <div className="home-buttons">
